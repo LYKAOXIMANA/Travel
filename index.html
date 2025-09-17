@@ -24,115 +24,69 @@
             color: white;
             position: relative;
         }
-        
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
-        
-        .container {
-            text-align: center;
-            max-width: 800px;
-            padding: 2.5rem;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            z-index: 2;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        
-        p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-            color: #f8f9fa;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 16px 45px;
-            background: #3b8dbf;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            letter-spacing: 1px;
-        }
-        
-        .cta-button:hover {
-            background: #84adf5;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-        
-        .logo {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: #7db3fa;
-        }
-        
-        .country-list {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .country-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-            color: #fff;
-        }
-        
-        .country-flag {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .container {
-                padding: 2rem 1.5rem;
-                margin: 0 15px;
-            }
-            
-            p {
-                font-size: 1.1rem;
-            }
-         
-        }
+        /* Animation styles */
+.container {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: fadeZoomIn 1s ease forwards;
+}
+
+.logo {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: bounceIn 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+h1 {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+p {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.cta-button {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+/* Keyframes */
+@keyframes fadeZoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: translateY(-50px); }
+  60% { opacity: 1; transform: translateY(10px); }
+  80% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
     </style>
 </head>
 <body>
