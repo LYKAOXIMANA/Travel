@@ -150,6 +150,42 @@
       h1 { font-size: 2.5rem; }
       .tagline { font-size: 1.2rem; }
     }
+    .intro-feature {
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent dark */
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  color: #f8f9fa;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.intro-feature:hover {
+  transform: translateY(-5px);
+}
+
+.intro-feature i {
+  font-size: 3rem;
+  color: #f1c40f; /* golden icon */
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.intro-feature h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #f1c40f;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.intro-feature .tagline {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
   </style>
 </head>
 <body>
@@ -160,12 +196,12 @@
     <div class="element"></div>
   </div>
 
-<div class="container"> 
-  <div class="logo"><i class="fas fa-globe-americas"></i></div> 
+<div class="intro-feature">
+  <i class="fas fa-globe"></i>
   <h1>World Travel Guide</h1> 
   <p class="tagline">Discover the beauty and culture of these amazing destinations.</p>
   <p>Start your journey with our comprehensive travel guides, insider tips, and curated experiences.</p>
-  
+</div>
   <div class="features"> 
     <div class="feature"><i class="fas fa-map-marked-alt"></i><h3>Destinations</h3></div> 
     <div class="feature"><i class="fas fa-hotel"></i><h3>Accommodations</h3></div> 
