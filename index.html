@@ -69,7 +69,7 @@
 
     .intro-feature i {
       font-size: 3.5rem;
-      color: #3498db; /* Changed to blue as requested */
+      color: #3498db;
       margin-bottom: 1.5rem;
       text-shadow: 0 2px 8px rgba(0,0,0,0.6);
       transition: all 0.4s ease;
@@ -77,7 +77,7 @@
 
     .intro-feature:hover i {
       transform: scale(1.1) rotate(5deg);
-      color: #2980b9; /* Slightly darker blue on hover */
+      color: #2980b9;
     }
 
     .intro-feature h1 {
@@ -141,7 +141,7 @@
 
     .feature i {
       font-size: 2.5rem;
-      color: #3498db; /* Blue icons */
+      color: #3498db;
       margin-bottom: 1.2rem;
       transition: all 0.4s ease;
       display: block;
@@ -160,13 +160,13 @@
 
     .feature:hover h3 {
       letter-spacing: 0.5px;
-      color: #f1c40f; /* Gold color on hover */
+      color: #f1c40f;
     }
 
     .cta-button {
       display: inline-block;
       padding: 1.2rem 3rem;
-      background: linear-gradient(135deg, #3498db, #2980b9); /* Blue gradient */
+      background: linear-gradient(135deg, #3498db, #2980b9);
       color: white;
       text-decoration: none;
       border-radius: 50px;
@@ -230,28 +230,112 @@
       50% { transform: translateY(-20px) rotate(10deg); }
     }
 
-    @media (max-width: 768px) {
+    /* Responsive Tweaks */
+
+    /* Tablet screens */
+    @media (max-width: 992px) {
+      .container {
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+      }
+
+      .intro-feature {
+        padding: 2.5rem 2rem;
+      }
+
+      .intro-feature h1 {
+        font-size: 2.4rem;
+      }
+
+      .intro-feature .tagline {
+        font-size: 1.2rem;
+      }
+
+      .intro-feature p {
+        font-size: 1rem;
+      }
+
       .features {
-        flex-direction: column;
-        align-items: center;
+        gap: 2rem;
+      }
+
+      .feature {
+        width: 160px;
+        padding: 1.8rem 1.2rem;
+      }
+
+      .feature i {
+        font-size: 2.2rem;
+      }
+
+      .cta-button {
+        font-size: 1.1rem;
+        padding: 1rem 2.5rem;
+      }
+    }
+
+    /* Mobile screens */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem 1rem;
         gap: 1.5rem;
       }
-      
+
       .intro-feature {
-        padding: 1.8rem;
+        padding: 2rem 1.5rem;
       }
-      
-      .intro-feature h1 { 
-        font-size: 2.2rem; 
+
+      .intro-feature h1 {
+        font-size: 2rem;
       }
-      
-      .intro-feature .tagline { 
-        font-size: 1.2rem; 
+
+      .intro-feature .tagline {
+        font-size: 1rem;
       }
-      
+
+      .intro-feature p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .features {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
       .feature {
-        width: 85%;
-        max-width: 250px;
+        width: 100%;
+        max-width: 260px;
+        padding: 1.5rem 1rem;
+      }
+
+      .feature i {
+        font-size: 2rem;
+      }
+
+      .cta-button {
+        font-size: 1rem;
+        padding: 0.9rem 2rem;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 400px) {
+      .intro-feature h1 {
+        font-size: 1.8rem;
+      }
+
+      .intro-feature .tagline {
+        font-size: 0.95rem;
+      }
+
+      .intro-feature p {
+        font-size: 0.9rem;
+      }
+
+      .cta-button {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.8rem;
       }
     }
   </style>
