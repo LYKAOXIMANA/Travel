@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Tips | World Travel Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #3498db, #2c3e50);
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+    }
+
+    .tips-hero {
+      height: 40vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .tips-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #3498db;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 24px;
+      background: white;
+      border: none;
+      border-radius: 30px;
+      margin: 0 10px 10px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn:hover {
+      background: #3498db;
+      color: white;
+    }
+
+    .tab-btn.active {
+      background: #3498db;
+      color: white;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .tip-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .tip-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tip-header {
+      padding: 1.5rem;
+      background: #3498db;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .tip-header i {
+      font-size: 1.8rem;
+      margin-right: 15px;
+    }
+
+    .tip-header h3 {
+      font-size: 1.4rem;
+    }
+
+    .tip-content {
+      padding: 1.5rem;
+    }
+
+    .tip-content ul {
+      list-style-type: none;
+      margin-left: 0;
+    }
+
+    .tip-content li {
+      margin-bottom: 0.8rem;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .tip-content li:before {
+      content: "•";
+      color: #3498db;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .best-time-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .best-time-table th, .best-time-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .best-time-table th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+
+    .best-time-table tr:hover {
+      background-color: #f1f8ff;
+    }
+
+    .season-indicator {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .peak {
+      background: #ff7675;
+      color: white;
+    }
+
+    .good {
+      background: #74b9ff;
+      color: white;
+    }
+
+    .fair {
+      background: #fdcb6e;
+      color: white;
+    }
+
+    .low {
+      background: #55efc4;
+      color: white;
+    }
+
+    .emergency-info {
+      background: #fff4e5;
+      border-left: 4px solid #f39c12;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 4px;
+    }
+
+    .emergency-info h3 {
+      color: #e67e22;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+      
+      .category-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tab-btn {
+        width: 80%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>World Travel Guide</h1>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="countries.html">Countries</a>
+      <a href="blog.html">Blog</a>
+      <a href="travel.html">Travel Tips</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Tips Hero -->
+  <section class="tips-hero">
+    <div class="hero-content">
+      <h2>Essential Travel Tips</h2>
+      <p>Expert advice to make your journeys safer, smoother, and more enjoyable</p>
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section class="tips-section">
+    <h2 class="section-title">Travel Smart</h2>
+    
+    <div class="category-tabs">
+      <button class="tab-btn active" data-category="all">All Tips</button>
+      <button class="tab-btn" data-category="packing">Packing</button>
+      <button class="tab-btn" data-category="safety">Safety</button>
+      <button class="tab-btn" data-category="timing">Best Times</button>
+      <button class="tab-btn" data-category="money">Money</button>
+    </div>
+    
+    <div class="tips-grid">
+      <!-- Tip 1 -->
+      <div class="tip-card" data-category="packing">
+        <div class="tip-header">
+          <i class="fas fa-suitcase"></i>
+          <h3>Packing Essentials</h3>
+        </div>
+        <div class="tip-content">
+          <ul>
+            <li>Roll clothes instead of folding to save space and reduce wrinkles</li>
+            <li>Use packing cubes to organize your belongings</li>
+            <li>Always pack a change of clothes in your carry-on</li>
+            <li>Bring a universal power adapter</li>
+            <li>Pack a basic first-aid kit with essential medications</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Tip 2 -->
+      <div class="tip-card" data-category="safety">
+        <div class="tip-header">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Safety Precautions</h3>
+        </div>
+        <div class="tip-content">
+          <ul>
+            <li>Make digital copies of important documents (passport, ID, insurance)</li>
+            <li>Research local emergency numbers for your destination</li>
+            <li>Keep valuables in hotel safe and use money belts when out</li>
+            <li>Be aware of common scams in your destination</li>
+            <li>Share your itinerary with family or friends back home</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Tip 3 -->
+      <div class="tip-card" data-category="timing">
+        <div class="tip-header">
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Best Times to Visit</h3>
+        </div>
+        <div class="tip-content">
+          <table class="best-time-table">
+            <tr>
+              <th>Destination</th>
+              <th>Best Time</th>
+              <th>Season</th>
+            </tr>
+            <tr>
+              <td>Italy</td>
+              <td>April-June</td>
+              <td><span class="season-indicator peak">Spring</span></td>
+            </tr>
+            <tr>
+              <td>Japan</td>
+              <td>March-May</td>
+              <td><span class="season-indicator good">Cherry Blossom</span></td>
+            </tr>
+            <tr>
+              <td>Egypt</td>
+              <td>October-April</td>
+              <td><span class="season-indicator fair">Winter</span></td>
+            </tr>
+            <tr>
+              <td>Australia</td>
+              <td>September-November</td>
+              <td><span class="season-indicator low">Spring</span></td>
+            </tr>
+            <tr>
+              <td>Brazil</td>
+              <td>December-March</td>
+              <td><span class="season-indicator peak">Summer</span></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Tip 4 -->
+      <div class="tip-card" data-category="money">
+        <div class="tip-header">
+          <i class="fas fa-money-bill-wave"></i>
+          <h3>Money Saving Tips</h3>
+        </div>
+        <div class="tip-content">
+          <ul>
+            <li>Travel during shoulder season for better prices and fewer crowds</li>
+            <li>Use price comparison websites for flights and accommodations</li>
+            <li>Eat where locals eat to save money and experience authentic cuisine</li>
+            <li>Consider public transportation instead of taxis</li>
+            <li>Look for free attractions and activities</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Tip 5 -->
+      <div class="tip-card" data-category="safety">
+        <div class="tip-header">
+          <i class="fas fa-passport"></i>
+          <h3>Document Preparation</h3>
+        </div>
+        <div class="tip-content">
+          <ul>
+            <li>Check passport validity - many countries require 6 months validity</li>
+            <li>Research visa requirements well in advance</li>
+            <li>Get necessary vaccinations and carry proof</li>
+            <li>Purchase travel insurance that covers medical emergencies</li>
+            <li>Have both digital and physical copies of important documents</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Tip 6 -->
+      <div class="tip-card" data-category="packing">
+        <div class="tip-header">
+          <i class="fas fa-laptop"></i>
+          <h3>Tech Essentials</h3>
+        </div>
+        <div class="tip-content">
+          <ul>
+            <li>Download offline maps and translation apps</li>
+            <li>Bring a portable power bank for your devices</li>
+            <li>Use a VPN when accessing public Wi-Fi networks</li>
+            <li>Backup your photos regularly to cloud storage</li>
+            <li>Download entertainment for long flights or bus rides</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="emergency-info">
+      <h3><i class="fas fa-exclamation-circle"></i> Emergency Preparedness</h3>
+      <p>Always know the location of your country's embassy or consulate. Save emergency contact numbers in your phone and also written down. Register with your embassy if traveling to unstable regions. Know basic phrases in the local language for emergency situations.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Created by: <strong>Lyka A. Oximana</strong> | Class: <strong>BSIT 3G</strong></p>
+    <p>&copy; 2025 World Travel Guide. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Tab filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tipCards = document.querySelectorAll('.tip-card');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          button.classList.add('active');
+          
+          const category = button.getAttribute('data-category');
+          
+          // Show/hide cards based on category
+          tipCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
