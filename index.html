@@ -180,7 +180,49 @@
       .tagline {
         font-size: 1.2rem;
       }
+
+      .cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+.card i {
+  font-size: 2.5rem;
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #f0f0f0;
+}
     }
+    
   </style>
 </head>
 <body>
@@ -192,25 +234,32 @@
   </div>
 
   <div class="container">
-    <div class="logo"><i class="fas fa-globe-americas"></i></div>
-    <h1>World Travel Guide</h1>
-    <div class="tagline">Your Passport to Unforgettable Adventures</div>
-    <p>Discover the beauty and culture of these amazing destinations. Start your journey with our comprehensive travel guides, insider tips, and curated experiences.</p>
-    
-    <div class="features">
-      <div class="feature">
-        <i class="fas fa-map-marked-alt"></i>
-        <h3>Destinations</h3>
-      </div>
-      <div class="feature">
-        <i class="fas fa-hotel"></i>
-        <h3>Accommodations</h3>
-      </div>
-      <div class="feature">
-        <i class="fas fa-utensils"></i>
-        <h3>Local Cuisine</h3>
-      </div>
+  <div class="logo"><i class="fas fa-globe-americas"></i></div>
+  <h1>World Travel Guide</h1>
+  <div class="tagline">Your Passport to Unforgettable Adventures</div>
+  <p>Discover the beauty and culture of these amazing destinations. Start your journey with our comprehensive travel guides, insider tips, and curated experiences.</p>
+
+  <div class="cards">
+    <div class="card">
+      <i class="fas fa-map-marked-alt"></i>
+      <h3>Destinations</h3>
+      <p>Explore breathtaking destinations across the globe.</p>
     </div>
+
+    <div class="card">
+      <i class="fas fa-hotel"></i>
+      <h3>Accommodations</h3>
+      <p>Find the best hotels and cozy stays during your journey.</p>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-utensils"></i>
+      <h3>Local Cuisine</h3>
+      <p>Taste authentic local food and discover culinary traditions.</p>
+    </div>
+  </div>
+</div>
+
     
     <a href="homepage.html" class="cta-button">Explore Destinations</a>
   </div>
