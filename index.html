@@ -1,10 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>World Travel Guide</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Reset + Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -17,208 +19,35 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
       color: white;
+      background: url("https://i0.wp.com/globalgrasshopper.com/wp-content/uploads/2020/04/Puglia-Italy.jpg?resize=840%2C561&ssl=1") 
+                  no-repeat center center/cover;
+      overflow: hidden;
       position: relative;
-      background: url("https://i0.wp.com/globalgrasshopper.com/wp-content/uploads/2020/04/Puglia-Italy.jpg?resize=840%2C561&ssl=1") no-repeat center center/cover;
     }
 
-    /* Overlay for better text readability */
+    /* Overlay */
     body::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 100%);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 100%);
       z-index: 1;
     }
 
-    .container {
-      max-width: 800px;
-      text-align: center;
-      z-index: 10;
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .intro-feature {
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px);
-      padding: 3rem 2.5rem;
-      border-radius: 20px;
-      margin-bottom: 2.5rem;
-      color: #f8f9fa;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      transition: all 0.4s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      width: 100%;
-      max-width: 700px;
-    }
-
-    .intro-feature:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .intro-feature i {
-      font-size: 3.5rem;
-      color: #3498db;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      transition: all 0.4s ease;
-    }
-
-    .intro-feature:hover i {
-      transform: scale(1.1) rotate(5deg);
-      color: #2980b9;
-    }
-
-    .intro-feature h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: #f1c40f;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.7);
-      transition: all 0.3s ease;
-    }
-
-    .intro-feature:hover h1 {
-      letter-spacing: 1px;
-    }
-
-    .intro-feature .tagline {
-      font-size: 1.4rem;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-      color: #ffffff;
-      transition: all 0.3s ease;
-    }
-
-    .intro-feature:hover .tagline {
-      color: #f8f9fa;
-    }
-
-    .intro-feature p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #eaeaea;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-      transition: all 0.3s ease;
-    }
-
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      margin: 3rem 0; 
-      flex-wrap: wrap;
-    }
-
-    .feature {
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      padding: 2rem 1.5rem; 
-      border-radius: 16px;
-      width: 180px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      color: white;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .feature:hover {
-      transform: translateY(-10px) scale(1.05);
-      background: rgba(0, 0, 0, 0.7);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
-    }
-
-    .feature i {
-      font-size: 2.5rem;
-      color: #3498db;
-      margin-bottom: 1.2rem;
-      transition: all 0.4s ease;
-      display: block;
-    }
-
-    .feature:hover i {
-      transform: scale(1.2) rotate(5deg);
-      color: #2980b9;
-    }
-
-    .feature h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .feature:hover h3 {
-      letter-spacing: 0.5px;
-      color: #f1c40f;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 1.2rem ;
-      background: linear-gradient(135deg, #3498db, #2980b9);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.3rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      border: none;
-      position: relative;
-      overflow: hidden;
-      margin-top: 2rem;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-      background: linear-gradient(135deg, #2980b9, #3498db);
-    }
-
-    .cta-button:active {
-      transform: translateY(2px);
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: 0.5s;
-    }
-
-    .cta-button:hover::before {
-      left: 100%;
-    }
-
+    /* Floating background elements */
     .background-elements {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 2;
     }
-
     .element {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
     }
-
     .element:nth-child(1) { width: 80px; height: 80px; top: 10%; left: 20%; animation: float 6s ease-in-out infinite; }
     .element:nth-child(2) { width: 50px; height: 50px; top: 70%; left: 10%; animation: float 8s ease-in-out infinite; }
     .element:nth-child(3) { width: 70px; height: 70px; top: 20%; right: 15%; animation: float 7s ease-in-out infinite; }
@@ -229,113 +58,122 @@
       50% { transform: translateY(-20px) rotate(10deg); }
     }
 
-    /* Responsive Tweaks */
-
-    /* Tablet screens */
-    @media (max-width: 992px) {
-      .container {
-        padding: 2rem 1.5rem;
-        gap: 2rem;
-      }
-
-      .intro-feature {
-        padding: 2.5rem 2rem;
-      }
-
-      .intro-feature h1 {
-        font-size: 2.4rem;
-      }
-
-      .intro-feature .tagline {
-        font-size: 1.2rem;
-      }
-
-      .intro-feature p {
-        font-size: 1rem;
-      }
-
-      .features {
-        gap: 2rem;
-      }
-
-      .feature {
-        width: 160px;
-        padding: 1.8rem 1.2rem;
-      }
-
-      .feature i {
-        font-size: 2.2rem;
-      }
-
-      .cta-button {
-        font-size: 1.1rem;
-        padding: 1rem 2.5rem;
-      }
+    /* Content Container */
+    .container {
+      max-width: 800px;
+      text-align: center;
+      z-index: 3;
+      padding: 2rem;
     }
 
-    /* Mobile screens */
-    @media (max-width: 600px) {
-      .container {
-        padding: 1.5rem 1rem;
-        gap: 1.5rem;
-      }
-
-      .intro-feature {
-        padding: 2rem 1.5rem;
-      }
-
-      .intro-feature h1 {
-        font-size: 2rem;
-      }
-
-      .intro-feature .tagline {
-        font-size: 1rem;
-      }
-
-      .intro-feature p {
-        font-size: 0.95rem;
-        line-height: 1.5;
-      }
-
-      .features {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .feature {
-        width: 100%;
-        max-width: 260px;
-        padding: 1.5rem 1rem;
-      }
-
-      .feature i {
-        font-size: 2rem;
-      }
-
-      .cta-button {
-        font-size: 1rem;
-        padding: 0.9rem 2rem;
-      }
+    /* Intro Section */
+    .intro-feature {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .intro-feature i {
+      font-size: 3.5rem;
+      color: #3498db;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .intro-feature h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #f1c40f;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+    }
+    .intro-feature .tagline {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+    .intro-feature p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #eaeaea;
     }
 
-    /* Extra small devices */
-    @media (max-width: 400px) {
-      .intro-feature h1 {
-        font-size: 1.8rem;
-      }
+    /* Features Section */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .feature {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      width: 180px;
+      text-align: center;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .feature i {
+      font-size: 2.5rem;
+      color: #3498db;
+      margin-bottom: 1rem;
+    }
+    .feature h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #f1c40f;
+    }
 
-      .intro-feature .tagline {
-        font-size: 0.95rem;
-      }
+    /* CTA Button */
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-button:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(135deg, #2980b9, #3498db);
+    }
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+    .cta-button:hover::before {
+      left: 100%;
+    }
 
-      .intro-feature p {
-        font-size: 0.9rem;
-      }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .intro-feature h1 { font-size: 2.2rem; }
+      .intro-feature .tagline { font-size: 1.1rem; }
+      .features { gap: 1.5rem; }
+      .feature { width: 150px; padding: 1.5rem 1rem; }
+      .cta-button { font-size: 1rem; padding: 0.8rem 2rem; }
+    }
 
-      .cta-button {
-        font-size: 0.9rem;
-        padding: 0.8rem 1.8rem;
-      }
+    @media (max-width: 480px) {
+      .intro-feature h1 { font-size: 1.8rem; }
+      .intro-feature p { font-size: 0.95rem; }
+      .features { flex-direction: column; align-items: center; }
+      .feature { width: 100%; max-width: 260px; }
     }
   </style>
 </head>
@@ -350,24 +188,24 @@
   <div class="container">
     <div class="intro-feature">
       <i class="fas fa-globe-americas"></i>
-      <h1>World Travel Guide</h1> 
-      <p class="tagline">Discover the beauty and culture of these amazing destinations.</p>
+      <h1>World Travel Guide</h1>
+      <p class="tagline">Discover the beauty and culture of amazing destinations</p>
       <p>Start your journey with our comprehensive travel guides, insider tips, and curated experiences.</p>
     </div>
-    
-    <div class="features"> 
+
+    <div class="features">
       <div class="feature">
         <i class="fas fa-map-marked-alt"></i>
         <h3>Destinations</h3>
-      </div> 
+      </div>
       <div class="feature">
         <i class="fas fa-hotel"></i>
         <h3>Accommodations</h3>
-      </div> 
+      </div>
       <div class="feature">
         <i class="fas fa-utensils"></i>
         <h3>Local Cuisine</h3>
-      </div> 
+      </div>
     </div>
 
     <a href="homepage.html" class="cta-button">Explore Destinations</a>
