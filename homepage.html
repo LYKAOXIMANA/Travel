@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Travel Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+       margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f9fafc;
+
+    }
+
+    header {
+      background: linear-gradient(135deg, #3498db, #2c3e50);
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+
+    .intro {
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .intro h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    .intro p {
+      max-width: 800px;
+      margin: auto;
+      color: #555;
+    }
+
+
+    .destinations {
+      padding: 3rem 1.5rem;
+      background: #ecf0f1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: #2c3e50;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #3498db;
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+
+    .destination-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .destination-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .card-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .destination-card:hover .card-img img {
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-content h3 {
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-content p {
+      color: #7f8c8d;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #3498db;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #2980b9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+
+    .features {
+      padding: 3rem 1.5rem;
+      background: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 10px;
+      background: #f8f9fa;
+      transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature i {
+      font-size: 3rem;
+      color: #3498db;
+      margin-bottom: 1rem;
+    }
+
+    .feature h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .social-links {
+      margin-bottom: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #3498db;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      nav a {
+        margin: 5px;
+        font-size: 0.9rem;
+      }
+      
+      .hero h2 {
+        font-size: 2rem;
+      }
+    
+    }
+  </style>
+</head>
+<body>
+  <!-- Header + Navigation -->
+  <header>
+    <h1>World Travel Guide</h1>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="#">Countries</a>
+      <a href="#">Blog</a>
+      <a href="#">Travel Tips</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <h1>Explore the World, One Destination at a Time</h1>
+  </section>
+
+  <!-- Introduction -->
+  <section class="intro">
+    <p>Welcome to the World Travel Guide, your trusted companion in discovering breathtaking destinations across the globe. Whether you're seeking adventure, relaxation, or cultural experiences, we provide insights and tips to make your journey unforgettable.</p>
+    <p>Our curated travel guides and blog articles are designed to help travelers like you plan the perfect trip and explore hidden gems worldwide.</p>
+  </section>
+
+  <!-- Destinations Section -->
+  <section class="destinations">
+    <h2 class="section-title">Popular Destinations</h2>
+    <div class="destination-grid">
+      <div class="destination-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&h=400" alt="Paris, France">
+        </div>
+        <div class="card-content">
+          <h3>Paris, France</h3>
+          <p>Experience the romance and charm of the City of Lights with its iconic landmarks and exquisite cuisine.</p>
+        
+        </div>
+      </div>
+      
+      <div class="destination-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=600&h=400" alt="Santorini, Greece">
+        </div>
+        <div class="card-content">
+          <h3>Santorini, Greece</h3>
+          <p>Discover the stunning white-washed buildings and breathtaking views of the Aegean Sea.</p>
+        
+        </div>
+      </div>
+      
+     <div class="destination-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&h=400" alt="Japan">
+        </div>
+        <div class="card-content">
+          <h3>Japan</h3>
+          <p>From Tokyo’s neon lights to Kyoto’s serene temples, Japan blends old and new.</p>
+          
+        </div>
+      </div>
+
+      <div class="destination-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=600&h=400&q=80" alt="Egypt">
+        </div>
+        <div class="card-content">
+          <h3>Egypt</h3>
+          <p>Stand in awe of the pyramids of Giza, cruise the Nile, and explore temples.</p>
+        
+        </div>
+      </div>
+
+      <div class="destination-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=600&h=400" alt="Brazil">
+        </div>
+        <div class="card-content">
+          <h3>Brazil</h3>
+          <p>Feel the rhythm of Rio, relax on Copacabana Beach, and marvel at Iguazu Falls.</p>
+        
+        </div>
+      </div>
+        <div class="destination-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=600&h=400" alt="Australia">
+        </div>
+        <div class="card-content">
+          <h3>Australia</h3>
+          <p>From Sydney’s Opera House to the Great Barrier Reef, Australia stuns with beauty.</p>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2 class="section-title">Why Travel With Us</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Expert Guides</h3>
+        <p>Comprehensive guides created by travel experts who have visited each destination.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-dollar-sign"></i>
+        <h3>Best Value</h3>
+        <p>Get the most out of your budget with our money-saving tips and recommendations.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-users"></i>
+        <h3>Community Tips</h3>
+        <p>Benefit from insights shared by our community of experienced travelers.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Unique Experiences</h3>
+        <p>Discover hidden gems and authentic experiences beyond typical tourist attractions.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-pinterest"></i></a>
+    </div>
+    <p>Created by: <strong>Lyka A. Oximana</strong> | Class: <strong>BSIT 3G</strong></p>
+    <p>&copy; 2025 World Travel Guide. All rights reserved.</p>
+  </footer>
+</body>
+</html>
