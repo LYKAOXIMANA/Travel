@@ -1,106 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Guide Splash</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      background: #000;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      color: #fff;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      font-size: 2.5rem;
-      animation: fadeIn 2s ease forwards;
-      z-index: 2;
-    }
-
-    /* Slideshow container */
-    .slideshow {
-      position: relative;
-      width: 90%;
-      max-width: 900px;
-      height: 60vh;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.6);
-    }
-
-    .slides {
-      display: flex;
-      width: 500%;
-      height: 100%;
-      animation: slide 25s infinite;
-    }
-
-    .slides img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Button */
-    .btn {
-      margin-top: 30px;
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 30px;
-      background: #00e0ff;
-      color: #000;
-      cursor: pointer;
-      transition: 0.3s;
-      z-index: 2;
-    }
-    .btn:hover {
-      background: #ffcc00;
-      transform: scale(1.05);
-    }
-
-    /* Animations */
-    @keyframes slide {
-      0% { transform: translateX(0%); }
-      20% { transform: translateX(0%); }
-      25% { transform: translateX(-100%); }
-      40% { transform: translateX(-100%); }
-      45% { transform: translateX(-200%); }
-      60% { transform: translateX(-200%); }
-      65% { transform: translateX(-300%); }
-      80% { transform: translateX(-300%); }
-      85% { transform: translateX(-400%); }
-      100% { transform: translateX(-400%); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Travel Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid white;
+        }
+        
+        .cta-button:hover {
+            background: #ff8e8e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button:active {
+            transform: translateY(1px);
+        }
+        
+        .world-map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.2;
+        }
+        
+        .country {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            transform-origin: center;
+            animation: float 8s infinite ease-in-out;
+            transition: all 0.5s ease;
+        }
+        
+        .country:hover {
+            transform: scale(1.2);
+            z-index: 5;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.9);
+        }
+        
+        .country::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+        
+        .italy {
+            top: 35%;
+            left: 45%;
+            background-image: url('https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');
+            animation-delay: 0s;
+        }
+        
+        .italy::after {
+            content: 'Italy';
+        }
+        
+        .japan {
+            top: 30%;
+            right: 25%;
+            background-image: url('https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');
+            animation-delay: 1s;
+        }
+        
+        .japan::after {
+            content: 'Japan';
+        }
+        
+        .egypt {
+            bottom: 30%;
+            left: 45%;
+            background-image: url('https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');
+            animation-delay: 2s;
+        }
+        
+        .egypt::after {
+            content: 'Egypt';
+        }
+        
+        .brazil {
+            bottom: 25%;
+            left: 20%;
+            background-image: url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');
+            animation-delay: 3s;
+        }
+        
+        .brazil::after {
+            content: 'Brazil';
+        }
+        
+        .australia {
+            bottom: 30%;
+            right: 20%;
+            background-image: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');
+            animation-delay: 4s;
+        }
+        
+        .australia::after {
+            content: 'Australia';
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(-5deg);
+            }
+        }
+        
+        .connection-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            height: 2px;
+            transform-origin: 0 0;
+            z-index: 1;
+        }
+        
+        .pulse {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 rgba(255, 107, 107, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(255, 107, 107, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+            }
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ffd166;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .country {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .country::after {
+                font-size: 0.9rem;
+                bottom: -20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Explore the World</h1>
-
-  <div class="slideshow">
-    <div class="slides">
-      <!-- Replace these images with your own country photos -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg" alt="Italy">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Tokyo_Tower_and_around_Skyscrapers.jpg" alt="Japan">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" alt="Egypt">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Rio_de_Janeiro_-_Rafael_Defavari.jpg" alt="Brazil">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Sydney_Opera_House_-_Dec_2008.jpg" alt="Australia">
+    <!-- Animated country elements -->
+    <div class="country italy"></div>
+    <div class="country japan"></div>
+    <div class="country egypt"></div>
+    <div class="country brazil"></div>
+    <div class="country australia"></div>
+    
+    <!-- Connection lines -->
+    <div class="connection-line" id="line1"></div>
+    <div class="connection-line" id="line2"></div>
+    <div class="connection-line" id="line3"></div>
+    <div class="connection-line" id="line4"></div>
+    <div class="connection-line" id="line5"></div>
+    
+    <!-- Main content container -->
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-globe-americas"></i>
+        </div>
+        <h1>World Travel Guide</h1>
+        <p>Explore the beauty of our world through our interactive travel guide. Discover amazing destinations, cultures, and experiences that will inspire your next adventure.</p>
+        
+        <div class="pulse"></div>
+        <a href="homepage.html" class="cta-button">Explore Destinations</a>
     </div>
-  </div>
 
-  <button class="btn" onclick="window.location.href='homepage.html'">Enter Homepage</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all country elements
+            const countries = document.querySelectorAll('.country');
+            const lines = document.querySelectorAll('.connection-line');
+            
+            // Set random initial positions for countries
+            countries.forEach(country => {
+                const randomX = Math.random() * 40 + 30;
+                const randomY = Math.random() * 40 + 30;
+                country.style.left = `${randomX}%`;
+                country.style.top = `${randomY}%`;
+            });
+            
+            // Function to update connection lines
+            function updateLines() {
+                // Simple implementation - connect countries in a circular pattern
+                for (let i = 0; i < countries.length; i++) {
+                    const nextIndex = (i + 1) % countries.length;
+                    const country1 = countries[i];
+                    const country2 = countries[nextIndex];
+                    
+                    const rect1 = country1.getBoundingClientRect();
+                    const rect2 = country2.getBoundingClientRect();
+                    
+                    const x1 = rect1.left + rect1.width / 2;
+                    const y1 = rect1.top + rect1.height / 2;
+                    const x2 = rect2.left + rect2.width / 2;
+                    const y2 = rect2.top + rect2.height / 2;
+                    
+                    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                    
+                    lines[i].style.width = `${length}px`;
+                    lines[i].style.left = `${x1}px`;
+                    lines[i].style.top = `${y1}px`;
+                    lines[i].style.transform = `rotate(${angle}deg)`;
+                }
+            }
+            
+            // Initial line update
+            updateLines();
+            
+            // Update lines on window resize
+            window.addEventListener('resize', updateLines);
+            
+            // Add slight movement to countries on mousemove for parallax effect
+            document.addEventListener('mousemove', function(e) {
+                const moveX = (e.clientX - window.innerWidth / 2) / 25;
+                const moveY = (e.clientY - window.innerHeight / 2) / 25;
+                
+                countries.forEach((country, index) => {
+                    country.style.transform = `translate(${moveX/(index+1)}px, ${moveY/(index+1)}px)`;
+                });
+                
+                updateLines();
+            });
+        });
+    </script>
 </body>
 </html>
