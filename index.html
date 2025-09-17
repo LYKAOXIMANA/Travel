@@ -24,97 +24,185 @@
       background: url("https://i0.wp.com/globalgrasshopper.com/wp-content/uploads/2020/04/Puglia-Italy.jpg?resize=840%2C561&ssl=1") no-repeat center center/cover;
     }
 
+    /* Overlay for better text readability */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 100%);
+      z-index: 1;
+    }
+
     .container {
       max-width: 800px;
       text-align: center;
       z-index: 10;
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .logo {
-      font-size: 5rem;
-      color: #3498db;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-      animation: float 3s ease-in-out infinite;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      font-weight: 800;
-      color: #f1c40f; /* gold for contrast */
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-    }
-
-    .tagline {
-      font-size: 1.5rem;
+    .intro-feature {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem;
+      border-radius: 20px;
       margin-bottom: 2rem;
-      font-weight: 300;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      color: #f8f9fa; /* softer white */
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+      color: #f8f9fa;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 700px;
     }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      color: #eaeaea; /* light gray/white */
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    .intro-feature:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.7);
     }
 
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background: linear-gradient(135deg, #3498db, #2ecc71);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.2rem;
+    .intro-feature i {
+      font-size: 3.5rem;
+      color: #3498db; /* Changed to blue as requested */
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      transition: all 0.4s ease;
+    }
+
+    .intro-feature:hover i {
+      transform: scale(1.1) rotate(5deg);
+      color: #2980b9; /* Slightly darker blue on hover */
+    }
+
+    .intro-feature h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #f1c40f;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.7);
       transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      border: none;
     }
 
-    .cta-button:hover {
-      background: linear-gradient(135deg, #2ecc71, #3498db);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    .intro-feature:hover h1 {
+      letter-spacing: 1px;
+    }
+
+    .intro-feature .tagline {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .intro-feature:hover .tagline {
+      color: #f8f9fa;
+    }
+
+    .intro-feature p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #eaeaea;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+      transition: all 0.3s ease;
     }
 
     .features {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      margin-top: 3rem;
+      margin: 2.5rem 0;
+      flex-wrap: wrap;
     }
 
     .feature {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(10px);
-      padding: 1.5rem;
-      border-radius: 15px;
+      padding: 1.8rem 1.5rem;
+      border-radius: 16px;
       width: 180px;
-      transition: transform 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       color: white;
       text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     .feature:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
     }
 
     .feature i {
-      font-size: 2rem;
-      color: #f1c40f; /* golden icons */
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      color: #3498db; /* Blue icons */
+      margin-bottom: 1.2rem;
+      transition: all 0.4s ease;
+      display: block;
+    }
+
+    .feature:hover i {
+      transform: scale(1.2) rotate(5deg);
+      color: #2980b9;
+    }
+
+    .feature h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover h3 {
+      letter-spacing: 0.5px;
+      color: #f1c40f; /* Gold color on hover */
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, #3498db, #2980b9); /* Blue gradient */
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.3rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #2980b9, #3498db);
+    }
+
+    .cta-button:active {
+      transform: translateY(2px);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
     }
 
     .background-elements {
@@ -146,46 +234,26 @@
       .features {
         flex-direction: column;
         align-items: center;
+        gap: 1.5rem;
       }
-      h1 { font-size: 2.5rem; }
-      .tagline { font-size: 1.2rem; }
+      
+      .intro-feature {
+        padding: 1.8rem;
+      }
+      
+      .intro-feature h1 { 
+        font-size: 2.2rem; 
+      }
+      
+      .intro-feature .tagline { 
+        font-size: 1.2rem; 
+      }
+      
+      .feature {
+        width: 85%;
+        max-width: 250px;
+      }
     }
-    .intro-feature {
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent dark */
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 20px;
-  margin-bottom: 2rem;
-  color: #f8f9fa;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease;
-}
-
-.intro-feature:hover {
-  transform: translateY(-5px);
-}
-
-.intro-feature i {
-  font-size: 3rem;
-  color: #f1c40f; /* golden icon */
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-
-.intro-feature h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #f1c40f;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-
-.intro-feature .tagline {
-  font-size: 1.3rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  color: #ffffff;
-}
   </style>
 </head>
 <body>
@@ -196,19 +264,30 @@
     <div class="element"></div>
   </div>
 
-<div class="intro-feature">
-  <i class="fas fa-globe"></i>
-  <h1>World Travel Guide</h1> 
-  <p class="tagline">Discover the beauty and culture of these amazing destinations.</p>
-  <p>Start your journey with our comprehensive travel guides, insider tips, and curated experiences.</p>
-</div>
-  <div class="features"> 
-    <div class="feature"><i class="fas fa-map-marked-alt"></i><h3>Destinations</h3></div> 
-    <div class="feature"><i class="fas fa-hotel"></i><h3>Accommodations</h3></div> 
-    <div class="feature"><i class="fas fa-utensils"></i><h3>Local Cuisine</h3></div> 
-  </div>
+  <div class="container">
+    <div class="intro-feature">
+      <i class="fas fa-globe-americas"></i>
+      <h1>World Travel Guide</h1> 
+      <p class="tagline">Discover the beauty and culture of these amazing destinations.</p>
+      <p>Start your journey with our comprehensive travel guides, insider tips, and curated experiences.</p>
+    </div>
+    
+    <div class="features"> 
+      <div class="feature">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Destinations</h3>
+      </div> 
+      <div class="feature">
+        <i class="fas fa-hotel"></i>
+        <h3>Accommodations</h3>
+      </div> 
+      <div class="feature">
+        <i class="fas fa-utensils"></i>
+        <h3>Local Cuisine</h3>
+      </div> 
+    </div>
 
-  <a href="homepage.html" class="cta-button">Explore Destinations</a>
-</div>
+    <a href="homepage.html" class="cta-button">Explore Destinations</a>
+  </div>
 </body>
 </html>
