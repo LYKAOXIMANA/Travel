@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countries | World Travel Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #3498db, #2c3e50);
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+    }
+
+    .search-section {
+      background-color: #eef2f7;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-box {
+      display: flex;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    #search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px 0 0 4px;
+      font-size: 1rem;
+    }
+
+    #search-btn {
+      padding: 12px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #search-btn:hover {
+      background: #2980b9;
+    }
+
+    .filter-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #3498db;
+      color: white;
+      border-color: #3498db;
+    }
+
+    .countries-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #3498db;
+    }
+
+    .continent-section {
+      margin-bottom: 3rem;
+    }
+
+    .continent-title {
+      margin-bottom: 1.5rem;
+      color: #2c3e50;
+      border-left: 4px solid #3498db;
+      padding-left: 12px;
+    }
+
+    .countries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .country-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .country-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .country-img {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .country-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .country-card:hover .country-img img {
+      transform: scale(1.1);
+    }
+
+    .country-info {
+      padding: 1.2rem;
+    }
+
+    .country-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .country-name a {
+      text-decoration: none;
+      color: #2c3e50;
+      transition: color 0.3s;
+    }
+
+    .country-name a:hover {
+      color: #3498db;
+    }
+
+    .country-details {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .country-details div {
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .country-details i {
+      margin-right: 8px;
+      color: #3498db;
+    }
+
+    .country-description {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .view-more-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .view-more-btn:hover {
+      background: #2980b9;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      grid-column: 1 / -1;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .countries-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      nav a {
+        display: inline-block;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>World Travel Guide</h1>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="countries.html">Countries</a>
+      <a href="#">Blog</a>
+      <a href="#">Travel Tips</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Search Section -->
+  <section class="search-section">
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search for a country...">
+        <button id="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+    <div class="filter-section">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="europe">Europe</button>
+      <button class="filter-btn" data-filter="asia">Asia</button>
+      <button class="filter-btn" data-filter="africa">Africa</button>
+      <button class="filter-btn" data-filter="americas">Americas</button>
+      <button class="filter-btn" data-filter="oceania">Oceania</button>
+    </div>
+  </section>
+
+  <!-- Countries List -->
+  <section class="countries-section">
+    <h2 class="section-title">Explore Countries</h2>
+    
+    <!-- Europe -->
+    <div class="continent-section" data-continent="europe">
+      <h3 class="continent-title">Europe</h3>
+      <div class="countries-grid">
+        <!-- Italy -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="Italy">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="italy.html">Italy</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Rome</div>
+              <div><i class="fas fa-globe"></i> Continent: Europe</div>
+              <div><i class="fas fa-users"></i> Population: 60.4 million</div>
+              <div><i class="fas fa-language"></i> Language: Italian</div>
+            </div>
+            <div class="country-description">
+              Known for its art, history, fashion, and cuisine. Home to more UNESCO World Heritage Sites than any other country.
+            </div>
+          </div>
+          <a href="italy.html" class="view-more-btn">Explore Italy</a>
+        </div>
+        
+        <!-- France -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80" alt="France">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="france.html">France</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Paris</div>
+              <div><i class="fas fa-globe"></i> Continent: Europe</div>
+              <div><i class="fas fa-users"></i> Population: 67.4 million</div>
+              <div><i class="fas fa-language"></i> Language: French</div>
+            </div>
+            <div class="country-description">
+              Famous for its wine, cuisine, art, and culture. Home to the Eiffel Tower and the Louvre Museum.
+            </div>
+          </div>
+          <a href="france.html" class="view-more-btn">Explore France</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Asia -->
+    <div class="continent-section" data-continent="asia">
+      <h3 class="continent-title">Asia</h3>
+      <div class="countries-grid">
+        <!-- Japan -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="Japan">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="japan.html">Japan</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Tokyo</div>
+              <div><i class="fas fa-globe"></i> Continent: Asia</div>
+              <div><i class="fas fa-users"></i> Population: 125.7 million</div>
+              <div><i class="fas fa-language"></i> Language: Japanese</div>
+            </div>
+            <div class="country-description">
+              A blend of ancient traditions and cutting-edge technology. Known for sushi, cherry blossoms, and Mount Fuji.
+            </div>
+          </div>
+          <a href="japan.html" class="view-more-btn">Explore Japan</a>
+        </div>
+        
+        <!-- Thailand -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="Thailand">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="thailand.html">Thailand</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Bangkok</div>
+              <div><i class="fas fa-globe"></i> Continent: Asia</div>
+              <div><i class="fas fa-users"></i> Population: 69.8 million</div>
+              <div><i class="fas fa-language"></i> Language: Thai</div>
+            </div>
+            <div class="country-description">
+              Known as the "Land of Smiles," famous for its beaches, temples, and vibrant street food culture.
+            </div>
+          </div>
+          <a href="thailand.html" class="view-more-btn">Explore Thailand</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Africa -->
+    <div class="continent-section" data-continent="africa">
+      <h3 class="continent-title">Africa</h3>
+      <div class="countries-grid">
+        <!-- Egypt -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="0801-0336_egypt-xlarge.jpg" alt="Egypt">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="egypt.html">Egypt</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Cairo</div>
+              <div><i class="fas fa-globe"></i> Continent: Africa</div>
+              <div><i class="fas fa-users"></i> Population: 104 million</div>
+              <div><i class="fas fa-language"></i> Language: Arabic</div>
+            </div>
+            <div class="country-description">
+              Home to ancient pyramids, the Nile River, and a civilization dating back thousands of years.
+            </div>
+          </div>
+          <a href="egypt.html" class="view-more-btn">Explore Egypt</a>
+        </div>
+        
+        <!-- Kenya -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="Kenya">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="kenya.html">Kenya</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Nairobi</div>
+              <div><i class="fas fa-globe"></i> Continent: Africa</div>
+              <div><i class="fas fa-users"></i> Population: 53 million</div>
+              <div><i class="fas fa-language"></i> Languages: Swahili, English</div>
+            </div>
+            <div class="country-description">
+              Famous for its safari experiences, diverse wildlife, and beautiful landscapes including the Maasai Mara.
+            </div>
+          </div>
+          <a href="kenya.html" class="view-more-btn">Explore Kenya</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Americas -->
+    <div class="continent-section" data-continent="americas">
+      <h3 class="continent-title">Americas</h3>
+      <div class="countries-grid">
+        <!-- Brazil -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="Brazil">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="brazil.html">Brazil</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Brasília</div>
+              <div><i class="fas fa-globe"></i> Continent: South America</div>
+              <div><i class="fas fa-users"></i> Population: 213 million</div>
+              <div><i class="fas fa-language"></i> Language: Portuguese</div>
+            </div>
+            <div class="country-description">
+              The largest country in South America, known for the Amazon rainforest, vibrant Carnival celebrations, and soccer.
+            </div>
+          </div>
+          <a href="brazil.html" class="view-more-btn">Explore Brazil</a>
+        </div>
+        
+        <!-- USA -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="USA">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="usa.html">United States</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Washington D.C.</div>
+              <div><i class="fas fa-globe"></i> Continent: North America</div>
+              <div><i class="fas fa-users"></i> Population: 331 million</div>
+              <div><i class="fas fa-language"></i> Language: English</div>
+            </div>
+            <div class="country-description">
+              A diverse nation with varied landscapes, from skyscrapers in New York to the Grand Canyon and Hawaiian beaches.
+            </div>
+          </div>
+          <a href="usa.html" class="view-more-btn">Explore USA</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Oceania -->
+    <div class="continent-section" data-continent="oceania">
+      <h3 class="continent-title">Oceania</h3>
+      <div class="countries-grid">
+        <!-- Australia -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="Australia">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="australia.html">Australia</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Canberra</div>
+              <div><i class="fas fa-globe"></i> Continent: Australia</div>
+              <div><i class="fas fa-users"></i> Population: 25.7 million</div>
+              <div><i class="fas fa-language"></i> Language: English</div>
+            </div>
+            <div class="country-description">
+              Known for its unique wildlife, stunning beaches, the Outback, and iconic landmarks like the Sydney Opera House.
+            </div>
+          </div>
+          <a href="australia.html" class="view-more-btn">Explore Australia</a>
+        </div>
+        
+        <!-- New Zealand -->
+        <div class="country-card">
+          <div class="country-img">
+            <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80" alt="New Zealand">
+          </div>
+          <div class="country-info">
+            <div class="country-name">
+              <a href="newzealand.html">New Zealand</a>
+            </div>
+            <div class="country-details">
+              <div><i class="fas fa-landmark"></i> Capital: Wellington</div>
+              <div><i class="fas fa-globe"></i> Continent: Oceania</div>
+              <div><i class="fas fa-users"></i> Population: 5.1 million</div>
+              <div><i class="fas fa-language"></i> Languages: English, Māori</div>
+            </div>
+            <div class="country-description">
+              Famous for its dramatic natural landscapes, adventure sports, and as the filming location for The Lord of the Rings.
+            </div>
+          </div>
+          <a href="newzealand.html" class="view-more-btn">Explore New Zealand</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Created by: <strong>Lyka A. Oximana</strong> | Class: <strong>BSIT 3G</strong></p>
+    <p>&copy; 2025 World Travel Guide. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Search functionality
+    document.getElementById('search-btn').addEventListener('click', searchCountries);
+    document.getElementById('search-input').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        searchCountries();
+      }
+    });
+
+    function searchCountries() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const countryCards = document.querySelectorAll('.country-card');
+      let found = false;
+
+      countryCards.forEach(card => {
+        const countryName = card.querySelector('.country-name').textContent.toLowerCase();
+        if (countryName.includes(searchTerm)) {
+          card.style.display = 'block';
+          found = true;
+          // Scroll to the card
+          card.scrollIntoView({behavior: 'smooth', block: 'center'});
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show message if no results found
+      if (!found) {
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = `<p>No countries found matching "${searchTerm}". Try another search term.</p>`;
+        
+        // Check if message already exists
+        const existingMessage = document.querySelector('.no-results');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+        
+        document.querySelector('.countries-grid').appendChild(noResults);
+      } else {
+        const existingMessage = document.querySelector('.no-results');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+      }
+    }
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        const continentSections = document.querySelectorAll('.continent-section');
+        
+        if (filter === 'all') {
+          continentSections.forEach(section => {
+            section.style.display = 'block';
+            section.querySelectorAll('.country-card').forEach(card => {
+              card.style.display = 'block';
+            });
+          });
+        } else {
+          // Hide all sections first
+          continentSections.forEach(section => {
+            section.style.display = 'none';
+          });
+          
+          // Show only the selected continent
+          const selectedSection = document.querySelector(`.continent-section[data-continent="${filter}"]`);
+          if (selectedSection) {
+            selectedSection.style.display = 'block';
+            selectedSection.querySelectorAll('.country-card').forEach(card => {
+              card.style.display = 'block';
+            });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
